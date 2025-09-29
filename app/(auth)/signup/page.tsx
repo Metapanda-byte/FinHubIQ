@@ -115,8 +115,8 @@ export default function SignupPage() {
             <div className="flex items-center justify-center mb-4">
               <Check className="w-12 h-12 text-[#8de7d5]" />
             </div>
-            <h2 className={`text-xl font-semibold text-white mb-2 ${kodeMono.className}`}>You're on the list!</h2>
-            <p className={`text-white/70 ${kodeMono.className}`}>Thanks for joining. We'll notify you when we launch.</p>
+            <h2 className={`text-xl font-semibold text-white mb-2 ${kodeMono.className}`}>You&apos;re on the list!</h2>
+            <p className={`text-white/70 ${kodeMono.className}`}>Thanks for joining. We&apos;ll notify you when we launch.</p>
           </div>
         ) : (
           <form onSubmit={submit} className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-8">
@@ -157,7 +157,7 @@ export default function SignupPage() {
             </div>
             
             <p className={`text-xs text-center text-white/50 mt-4 ${kodeMono.className}`}>
-              No spam. We'll only send important updates.
+              No spam. We&apos;ll only send important updates.
             </p>
           </form>
         )}

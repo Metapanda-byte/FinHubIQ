@@ -1,35 +1,21 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
 
-export function middleware(req: NextRequest) {
-  const { pathname } = req.nextUrl;
-
-  // Allowlist: home and signup
-  const allowedExact = new Set<string>(['/', '/signup', '/signup/']);
-  if (allowedExact.has(pathname)) {
+export function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+  
+  // Allow access to signup page and its assets
+  if (pathname === '/signup' || 
+      pathname.startsWith('/_next') || 
+      pathname.startsWith('/api') ||
+      pathname.includes('.')) {
     return NextResponse.next();
   }
-
-  // Static/Next internals and common assets
-  if (
-    pathname.startsWith('/_next') ||
-    pathname.startsWith('/static') ||
-    pathname.startsWith('/public') ||
-    pathname.startsWith('/images') ||
-    pathname === '/favicon.ico' ||
-    pathname === '/og-image.jpg' ||
-    pathname === '/robots.txt' ||
-    pathname === '/sitemap.xml'
-  ) {
-    return NextResponse.next();
-  }
-
-  // Everything else redirects to the homepage
-  const url = req.nextUrl.clone();
-  url.pathname = '/';
-  url.search = '';
-  return NextResponse.redirect(url, 307);
+  
+  // Redirect all other routes to /signup
+  return NextResponse.redirect(new URL('/signup', request.url));
 }
 
 export const config = {
-  matcher: ['/((?!.*).*)'],
-}; 
+  matcher: '/:path*',
+};
