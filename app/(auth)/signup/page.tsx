@@ -33,7 +33,7 @@ export default function SignupPage() {
     try {
       if (supabase) {
         const { error } = await supabase
-          .from('waitlist')
+          .from('waitlist_emails')
           .insert([{ email }])
           .select()
           .single();
