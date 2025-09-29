@@ -32,15 +32,15 @@ export default function SignupPage() {
     
     try {
       if (supabase) {
+        const normalizedEmail = email.trim().toLowerCase();
         const { error } = await supabase
           .from('waitlist_emails')
-          .insert([{ email }])
-          .select()
-          .single();
+          .insert([{ email: normalizedEmail }], { returning: 'minimal' });
           
         if (error) {
-          if (error.message.includes('unique constraint')) {
-            setError('You are already on the waitlist!');
+          // Treat unique violation as success (already subscribed)
+          if ((error as any).code === '23505' || /unique/i.test(error.message)) {
+            setStatus('done');
           } else {
             throw error;
           }
