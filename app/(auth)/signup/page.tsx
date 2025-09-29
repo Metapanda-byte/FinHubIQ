@@ -85,25 +85,25 @@ export default function SignupPage() {
 
   return (
     <div 
-      className="fixed inset-0 w-full h-full overflow-hidden bg-[#0d1a20]"
+      className="fixed inset-0 w-full h-full overflow-hidden bg-[#0d1a20] px-4"
     >
       {/* Vertically and horizontally centered group */}
       <div className="absolute inset-0 flex flex-col items-center justify-center">
         {/* ORIGO Logo - Centered and Larger */}
-        <div className="text-center mb-8">
-          <h1 className={`${kodeMono.className} font-bold text-[#e1a1a1] text-[72px] tracking-[18px]`}>
+        <div className="text-center mb-6 sm:mb-8">
+          <h1 className={`${kodeMono.className} font-bold text-[#e1a1a1] text-[clamp(40px,12vw,72px)] tracking-[10px] md:tracking-[18px]`}>
             ORIGO
           </h1>
         </div>
 
         {/* High Signal Idea Generation - Below ORIGO */}
-        <p className={`${kodeMono.className} font-normal text-[40px] text-center text-white whitespace-nowrap`}>
+        <p className={`${kodeMono.className} font-normal text-[clamp(20px,6.5vw,40px)] leading-tight text-center text-white`}>
           <span className="text-[#8de7d5]">High Signal</span>
           <span className="text-white"> Idea Generation</span>
         </p>
 
         {/* Email Signup Form - Below Tagline */}
-        <div className="mt-16 w-[90vw] max-w-[400px]">
+        <div className="mt-8 sm:mt-16 w-[90vw] max-w-[400px]">
           {status === 'done' ? (
             <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-8 text-center">
               <div className="flex items-center justify-center mb-4">
